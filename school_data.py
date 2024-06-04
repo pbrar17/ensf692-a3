@@ -101,7 +101,7 @@ def main():
         tenYear += np.sum(data[access,school,:])
         start += 1
     print("Total ten year enrollment:",  tenYear.astype(int))
-    print("Mean total enrollment over 10 years:", (tenYear/10).astype(int) )
+    print("Mean total enrollment over 10 years:", (tenYear//10).astype(int) )
 
     # print(data[:,school,:])
     anArray = np.array([])
