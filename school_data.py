@@ -101,6 +101,15 @@ def main():
         start += 1
     print("Total ten year enrollment:",  tenYear)
     print("Mean total enrollment over 10 years:", tenYear/10 )
+
+    # print(data[:,school,:])
+    anArray = np.array([])
+    for x in data[:,school,:]:
+        mask = x>500
+        # print(data[mask])
+        x= x[mask]
+        anArray = np.append(anArray, x)
+    print("For all enrollments over 500, the median value was:",np.median(anArray))
     # Print Stage 3 requirements here
     print("\n***General Statistics for All Schools***\n")
 
