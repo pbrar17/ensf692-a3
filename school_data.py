@@ -48,6 +48,7 @@ def main():
 
     print("Shape of full data array:",data.shape)
     print("Dimensions of full data array:",data.ndim)
+    data = np.nan_to_num(data)
     # print(data)
     # print(data[0][1][1])
     # print(data[0][1])
@@ -112,6 +113,11 @@ def main():
     print("For all enrollments over 500, the median value was:",np.median(anArray))
     # Print Stage 3 requirements here
     print("\n***General Statistics for All Schools***\n")
+    print("Mean enrollment in 2013:", np.mean(data[0,:,:]))
+    print("Mean enrollment in 2022:", np.mean(data[9,:,:]))
+    print("Total graduating class of 2022:", np.sum(data[9,:,2]))
+    print("Highest enrollment for a single grade:", np.max(data[:,:,:]))
+    print("Lowes enrollment for a single grade:", np.min(data[:,:,:]))
 
 
 if __name__ == '__main__':
