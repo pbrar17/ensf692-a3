@@ -39,7 +39,8 @@ def main():
     schoolNames = namesIdData['School Name'].unique().tolist()
     # schoolNames = pd.unique(schoolNames)
     schoolIds = namesIdData['School Code'].astype(str).unique().tolist()
-    arrayAccessNumbers = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
+    arrayAccessNumbers = list(range(20))
+    # [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
     # schoolIds = pd.unique(schoolIds)
 
     # for name, code in zip(schoolNames, schoolIds):
@@ -87,15 +88,19 @@ def main():
     print("Mean enrollment for Grade 10:", np.mean(data[:,school,0]))
     print("Mean enrollment for Grade 11:", np.mean(data[:,school,1]))
     print("Mean enrollment for Grade 12:", np.mean(data[:,school,2]))
-    # print(grade10)
-    # print(data)
-    # print(data[0][0][0])
-    # for x in data[x]:
-    #     meanGrade10 = np.sum()
+    print("Highest enrollment for a single grade:", np.max(data[:,school,:]))
+    print("Highest enrollment for a single grade:", np.min(data[:,school,:]))
+    print(data[:,school,:])
 
-
-
-
+    start = 2013
+    tenYear = 0
+    while(start<2023):
+        access = start-2013
+        print(f"Total enrollment for {start}:", np.sum(data[access,school,:]))
+        tenYear += np.sum(data[access,school,:])
+        start += 1
+    print("Total ten year enrollment:",  tenYear)
+    print("Mean total enrollment over 10 years:", tenYear/10 )
     # Print Stage 3 requirements here
     print("\n***General Statistics for All Schools***\n")
 
