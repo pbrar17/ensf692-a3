@@ -48,7 +48,9 @@ def main():
 
     print("Shape of full data array:",data.shape)
     print("Dimensions of full data array:",data.ndim)
-    data = np.nan_to_num(data)
+
+
+    
     # print(data)
     # print(data[0][1][1])
     # print(data[0][1])
@@ -86,18 +88,18 @@ def main():
     # data[year][school][grade]
     # stuff = data[0:10,:,:][school][0]
     # grade10 = data[:,school,0]
-    print("Mean enrollment for Grade 10:", np.mean(data[:,school,0]).astype(int))
-    print("Mean enrollment for Grade 11:", np.mean(data[:,school,1]).astype(int))
-    print("Mean enrollment for Grade 12:", np.mean(data[:,school,2]).astype(int))
-    print("Highest enrollment for a single grade:", np.max(data[:,school,:]).astype(int))
-    print("Highest enrollment for a single grade:", np.min(data[:,school,:]).astype(int))
+    print("Mean enrollment for Grade 10:", np.nanmean(data[:,school,0]).astype(int))
+    print("Mean enrollment for Grade 11:", np.nanmean(data[:,school,1]).astype(int))
+    print("Mean enrollment for Grade 12:", np.nanmean(data[:,school,2]).astype(int))
+    print("Highest enrollment for a single grade:", np.nanmax(data[:,school,:]).astype(int))
+    print("Highest enrollment for a single grade:", np.nanmin(data[:,school,:]).astype(int))
     # print(data[:,school,:])
 
     start = 2013
     tenYear = 0
     while(start<2023):
         access = start-2013
-        print(f"Total enrollment for {start}:", np.sum(data[access,school,:]).astype(int))
+        print(f"Total enrollment for {start}:", np.nansum(data[access,school,:]).astype(int))
         tenYear += np.sum(data[access,school,:])
         start += 1
     print("Total ten year enrollment:",  tenYear.astype(int))
@@ -110,16 +112,15 @@ def main():
         # print(data[mask])
         x= x[mask]
         anArray = np.append(anArray, x)
-    print("For all enrollments over 500, the median value was:",np.median(anArray).astype(int))
+    print("For all enrollments over 500, the median value was:",np.nanmedian(anArray).astype(int))
     # Print Stage 3 requirements here
     print("\n***General Statistics for All Schools***\n")
-    print("Mean enrollment in 2013:", np.mean(data[0,:,:]).astype(int))
-    print("Mean enrollment in 2022:", np.mean(data[9,:,:]).astype(int))
-    print("Total graduating class of 2022:", np.sum(data[9,:,2]).astype(int))
-    print("Highest enrollment for a single grade:", np.max(data[:,:,:]).astype(int))
-    print("Lowes enrollment for a single grade:", np.min(data[:,:,:]).astype(int))
+    print("Mean enrollment in 2013:", np.nanmean(data[0,:,:]).astype(int))
+    print("Mean enrollment in 2022:", np.nanmean(data[-1,:,:]).astype(int))
+    print("Total graduating class of 2022:", np.nansum(data[9,:,2]).astype(int))
+    print("Highest enrollment for a single grade:", np.nanmax(data[:,:,:]).astype(int))
+    print("Lowest enrollment for a single grade:", np.nanmin(data[:,:,:]).astype(int))
 
 
 if __name__ == '__main__':
     main()
-
