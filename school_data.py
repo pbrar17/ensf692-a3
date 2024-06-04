@@ -100,7 +100,7 @@ def main():
     while(start<2023):
         access = start-2013
         print(f"Total enrollment for {start}:", np.nansum(data[access,school,:]).astype(int))
-        tenYear += np.sum(data[access,school,:])
+        tenYear += np.nansum(data[access,school,:])
         start += 1
     print("Total ten year enrollment:",  tenYear.astype(int))
     print("Mean total enrollment over 10 years:", (tenYear//10).astype(int) )
@@ -112,7 +112,10 @@ def main():
         # print(data[mask])
         x= x[mask]
         anArray = np.append(anArray, x)
-    print("For all enrollments over 500, the median value was:",np.nanmedian(anArray).astype(int))
+    if(anArray.size == 0):
+        print("No enrollments over 500.")
+    else:
+        print("For all enrollments over 500, the median value was:",np.nanmedian(anArray).astype(int))
     # Print Stage 3 requirements here
     print("\n***General Statistics for All Schools***\n")
     print("Mean enrollment in 2013:", np.nanmean(data[0,:,:]).astype(int))
